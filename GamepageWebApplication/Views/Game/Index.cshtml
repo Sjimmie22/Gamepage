@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GameViewModel>
+
+@{
+    ViewData["Title"] = "List of Games";
+}
+
+<h1>Games</h1>
+
+<h2>Welcome to the gamepage!</h2>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(Model => Model.Name)</th>
+                    <th>Wanna see some clips?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (GameViewModel game in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            @Html.DisplayFor(Modelitem => game.Name)
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                <a href="@Url.Action("Index", "Clip", new {GameID = game.ID})">Clips</a> 
+                            </button>
+                        </td>
+                        <td>
+                            @if (game.IsAdmin)
+                            {
+                                <button class="btn btn-outline-info">
+                                    @Html.ActionLink("Details", "Details", new { id=game.ID })
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    @Html.ActionLink("Edit", "Edit", new { id = game.ID }) 
+                                </button>
+                                <button class="btn btn-danger">
+                                    @Html.ActionLink("Delete", "Delete", new { id=game.ID })
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <button class="btn btn-success">
+            @Html.ActionLink("Create", "Create")
+        </button>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,55 @@
+﻿@model GamepageWebApplication.Models.UserGameViewModel
+
+@{
+    ViewData["Title"] = "Add User Game";
+}
+
+<h1>Add User Game</h1>
+
+<form asp-action="Addgamelist">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Name:</label>
+        <select asp-for="Name" class="form-control">
+            <option value="">Selecteer je Game!</option>
+            @foreach (var game in ViewBag.ExistingUserGames)
+            {
+                <option value="@game.Name">@game.Name</option>
+            }
+        </select>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Time" class="control-label"></label>
+        <input asp-for="Time" class="form-control" />
+        <span asp-validation-for="Time" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Level" class="control-label"></label>
+        <input asp-for="Level" class="form-control" />
+        <span asp-validation-for="Level" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Particularities" class="control-label"></label>
+        <input asp-for="Particularities" class="form-control" value="New Game" />
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+
+ 
+    <div>
+        <a asp-action="GameList">Back to List</a>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

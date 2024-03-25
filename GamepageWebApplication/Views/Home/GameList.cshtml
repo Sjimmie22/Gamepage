@@ -1,0 +1,61 @@
+﻿@model IEnumerable<GamepageWebApplication.Models.UserGameViewModel>
+
+@{
+    ViewData["Title"] = "GameList";
+}
+
+<h1>GameList</h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Particularities)
+            </th>
+            <th>Wanna see some clips?</th>
+            <th>Actions:</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Particularities)
+            </td>
+            <td>
+                    <button class="btn btn-outline-success">
+                        <a href="@Url.Action("Index", "Clip", new { gameID = item.gameID })">Clips</a>
+                    </button>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "GameListedit", item) |
+                    @Html.ActionLink("Delete", "GameListdelete", new { gameID = item.gameID, userid = item.userID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<button class="btn btn-success">
+    @Html.ActionLink("Voeg iets toe aan je lijst!", "Addgamelist")
+</button>

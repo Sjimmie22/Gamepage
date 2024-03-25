@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GamepageWebApplication.Models.ClipViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClipText)
+            </th>
+            <th>Wanna read some Comments?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Maker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClipText)
+            </td>
+                <td>
+                    <button class="btn btn-outline-success">
+                        <a href="@Url.Action("Index", "Comment", new { clipid = item.ClipID })">Comments</a>
+                    </button>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<button class="btn btn-success">
+    @Html.ActionLink("New Clip!", "CreateClip")
+</button>

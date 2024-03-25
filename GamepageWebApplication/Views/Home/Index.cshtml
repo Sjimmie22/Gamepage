@@ -1,0 +1,34 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome bij Gamepager</h1>
+    <h2 class="display-4">We zijn een echte gamechanger...</h2>
+    <hr />
+
+    <form asp-action="Index" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" type="email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" type="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-check">
+            <input asp-for="RememberMe" class="form-check-input" />
+            <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <a class="nav-link text-info" asp-area="" asp-controller="Home" asp-action="Register">Or Register</a>
+</div>
